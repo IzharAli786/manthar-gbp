@@ -1,5 +1,5 @@
 import Reveal from "./Reveal";
-import { ArrowUpRight, MapPin, Star, Megaphone, Target } from "lucide-react";
+import { ArrowUpRight, MapPin, Search, Megaphone, Target } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Service = {
@@ -9,6 +9,7 @@ type Service = {
   sub: string;
   body: string;
   chips: string[];
+  href?: string;
 };
 
 const services: Service[] = [
@@ -19,14 +20,16 @@ const services: Service[] = [
     sub: "Map-pack engineering",
     body: "Full-stack GBP optimization — geo-grid audits, category architecture, photo & post cadence, Q&A seeding, service-area expansion, and ranking diagnostics. Built to outrank, not to tick boxes.",
     chips: ["Geo-grid audit", "Citations", "Posts & Media", "Schema"],
+    href: "https://www.fiverr.com/s/zWDoVRR",
   },
   {
     n: "02",
-    icon: Star,
-    title: "Reputation Systems",
-    sub: "Review velocity, on autopilot",
-    body: "Review acquisition funnels, sentiment monitoring, response frameworks, and recovery protocols. Turn happy customers into compounding social proof — measured in stars, not hopes.",
-    chips: ["Funnels", "Templates", "Recovery", "Monitoring"],
+    icon: Search,
+    title: "SEO Optimization",
+    sub: "Rank where buyers search",
+    body: "Technical SEO audits, on-page optimization, keyword architecture, internal-link engineering, and content briefs that match real search intent. The kind of SEO that compounds — and lasts.",
+    chips: ["Technical audit", "On-page", "Keywords", "Content"],
+    href: "https://www.fiverr.com/s/5rzd3p6",
   },
   {
     n: "03",
@@ -79,10 +82,19 @@ export default function Services() {
       <div className="grid grid-cols-1 md:grid-cols-2 hairline-t hairline">
         {services.map((s, i) => {
           const Icon = s.icon;
+          const Tag = s.href ? "a" : "article";
+          const linkProps = s.href
+            ? {
+                href: s.href,
+                target: "_blank",
+                rel: "noopener noreferrer",
+              }
+            : {};
           return (
             <Reveal key={s.n} delay={i * 0.08}>
-              <article
-                className={`group relative h-full p-8 md:p-12 transition-colors duration-500 hover:bg-ink hover:text-paper border-b border-line md:border-b-0 last:border-b-0 ${
+              <Tag
+                {...linkProps}
+                className={`group relative block h-full p-8 md:p-12 transition-colors duration-500 hover:bg-ink hover:text-paper border-b border-line md:border-b-0 last:border-b-0 ${
                   i % 2 === 0 ? "md:border-r md:border-line" : ""
                 } ${i < 2 ? "md:border-b md:border-line" : ""}`}
               >
@@ -127,7 +139,14 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-              </article>
+
+                {s.href && (
+                  <p className="mt-6 text-[11px] tracking-[0.22em] uppercase text-brass group-hover:text-paper/80 transition-colors flex items-center gap-2">
+                    View gig on Fiverr
+                    <span aria-hidden="true">↗</span>
+                  </p>
+                )}
+              </Tag>
             </Reveal>
           );
         })}
