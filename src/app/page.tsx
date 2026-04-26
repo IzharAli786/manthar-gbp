@@ -9,10 +9,16 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
+import SmoothScroll from "@/components/SmoothScroll";
+import Cursor from "@/components/Cursor";
+import ScrollProgress from "@/components/ScrollProgress";
+import SectionIndicator from "@/components/SectionIndicator";
 
 export default function Home() {
   return (
-    <>
+    <SmoothScroll>
+      <ScrollProgress />
+      <Cursor />
       <Nav />
       <main className="relative">
         <Hero />
@@ -26,6 +32,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppFab />
-    </>
+      <SectionIndicator />
+    </SmoothScroll>
   );
 }

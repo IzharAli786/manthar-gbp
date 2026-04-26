@@ -13,7 +13,7 @@ const items = [
 
 export default function Marquee() {
   return (
-    <div className="hairline-t hairline-b py-5 md:py-7 overflow-hidden bg-paper-soft relative">
+    <div className="marquee-host hairline-t hairline-b py-5 md:py-7 overflow-hidden bg-paper-soft relative">
       <div className="flex w-max animate-marquee whitespace-nowrap items-center">
         {[...items, ...items, ...items].map((it, i) => (
           <span

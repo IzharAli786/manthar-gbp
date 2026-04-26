@@ -1,8 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
+import { useRef, type MouseEvent } from "react";
 import { ArrowUpRight, Star } from "lucide-react";
 import { GoogleG } from "./brand/GoogleLogo";
 import MapPackCard from "./MapPackCard";
@@ -16,6 +22,30 @@ export default function Hero() {
   const yPortrait = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const yMap = useTransform(scrollYProgress, [0, 1], [0, -30]);
   const yBg = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
+  // Portrait 3D tilt
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(tiltY, [-1, 1], [6, -6]), {
+    stiffness: 120,
+    damping: 16,
+  });
+  const rotateY = useSpring(useTransform(tiltX, [-1, 1], [-8, 8]), {
+    stiffness: 120,
+    damping: 16,
+  });
+
+  function onPortraitMove(e: MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltX.set(x * 2);
+    tiltY.set(y * 2);
+  }
+  function onPortraitLeave() {
+    tiltX.set(0);
+    tiltY.set(0);
+  }
 
   return (
     <section
@@ -65,11 +95,11 @@ export default function Hero() {
             </motion.p>
 
             <h1 className="display mt-5 text-[16vw] sm:text-[12vw] md:text-[9vw] lg:text-[8.2vw] xl:text-[136px] leading-[0.92]">
-              <SplitWord text="Manthar" />
+              <SplitChars text="Manthar" />
               <br />
               <span className="italic">
                 <span className="text-brass-shine">
-                  <SplitWord text="Ali." delay={0.2} />
+                  <SplitChars text="Ali." delay={0.45} />
                 </span>
               </span>
             </h1>
@@ -138,26 +168,45 @@ export default function Hero() {
             style={{ y: yPortrait }}
             className="col-span-12 md:col-span-5 relative order-first md:order-none"
           >
-            <div className="relative mx-auto md:ml-auto w-[82%] sm:w-[68%] md:w-full max-w-[460px] aspect-[3/4]">
+            <motion.div
+              onMouseMove={onPortraitMove}
+              onMouseLeave={onPortraitLeave}
+              style={{
+                rotateX,
+                rotateY,
+                transformPerspective: 1000,
+                transformStyle: "preserve-3d",
+              }}
+              className="relative mx-auto md:ml-auto w-[82%] sm:w-[68%] md:w-full max-w-[460px] aspect-[3/4]"
+            >
               {/* Brass halo */}
               <div className="absolute -inset-6 -z-10 rounded-full bg-brass/25 blur-3xl animate-halo" />
               {/* Frame */}
               <div className="absolute -inset-1.5 hairline-strong rounded-[2px]" />
               <motion.div
-                initial={{ scale: 1.05, opacity: 0, filter: "blur(12px)" }}
-                animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+                animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                transition={{ duration: 1.6, ease: [0.83, 0, 0.17, 1], delay: 0.1 }}
                 className="relative h-full w-full overflow-hidden bg-paper-deep"
               >
-                <Image
-                  src="/manthar.jpeg"
-                  alt="Portrait of Manthar Ali"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 82vw, 460px"
-                  className="object-cover object-center grayscale-[0.15] contrast-[1.02]"
-                />
+                <motion.div
+                  initial={{ scale: 1.18 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative h-full w-full"
+                >
+                  <Image
+                    src="/manthar.jpeg"
+                    alt="Portrait of Manthar Ali"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 82vw, 460px"
+                    className="object-cover object-center grayscale-[0.15] contrast-[1.02]"
+                  />
+                </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-paper/35 via-transparent to-transparent" />
+                {/* Specular highlight */}
+                <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_45%,rgba(255,255,255,0.18)_50%,transparent_55%)] mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               </motion.div>
 
               {/* Top-left credential */}
@@ -194,7 +243,7 @@ export default function Hero() {
                   client reviews
                 </p>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -245,17 +294,30 @@ export default function Hero() {
   );
 }
 
-function SplitWord({ text, delay = 0 }: { text: string; delay?: number }) {
+function SplitChars({ text, delay = 0 }: { text: string; delay?: number }) {
+  const chars = Array.from(text);
   return (
-    <span className="inline-block overflow-hidden align-baseline pb-[0.04em]">
-      <motion.span
-        initial={{ y: "110%" }}
-        animate={{ y: "0%" }}
-        transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
-        className="inline-block"
-      >
-        {text}
-      </motion.span>
+    <span className="inline-block align-baseline pb-[0.04em]" aria-label={text}>
+      {chars.map((c, i) => (
+        <span
+          key={i}
+          className="inline-block overflow-hidden align-baseline"
+          aria-hidden
+        >
+          <motion.span
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{
+              duration: 0.9,
+              delay: delay + i * 0.045,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="inline-block"
+          >
+            {c === " " ? " " : c}
+          </motion.span>
+        </span>
+      ))}
     </span>
   );
 }

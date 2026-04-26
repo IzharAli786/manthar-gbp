@@ -60,6 +60,45 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom cursor — hide native cursor when active */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+.cursor-ring[data-state="hover"] {
+  height: 64px !important;
+  width: 64px !important;
+  margin-left: -32px !important;
+  margin-top: -32px !important;
+  background: rgba(14, 31, 28, 0.06);
+  border-color: rgba(14, 31, 28, 0.9);
+}
+.cursor-ring[data-state="press"] {
+  height: 28px !important;
+  width: 28px !important;
+  margin-left: -14px !important;
+  margin-top: -14px !important;
+  background: rgba(14, 31, 28, 0.18);
+}
+
 body {
   overflow-x: hidden;
 }
@@ -138,6 +177,10 @@ body {
 }
 .animate-marquee {
   animation: marquee 38s linear infinite;
+  animation-play-state: running;
+}
+.marquee-host:hover .animate-marquee {
+  animation-duration: 90s;
 }
 
 /* Halo */
