@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sans = Inter({
@@ -43,7 +44,10 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${display.variable} ${mono.variable}`}
     >
-      <body className="grain bg-paper text-ink min-h-screen">{children}</body>
+      <body className="grain bg-paper text-ink min-h-screen">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
