@@ -5,7 +5,7 @@ import { GoogleG } from "./brand/GoogleLogo";
 import { Mail, MessageCircle, ArrowUpRight } from "lucide-react";
 
 const EMAIL = "balochmanthar15@gmail.com";
-const FIVERR = "https://www.fiverr.com/";
+const FIVERR = "https://www.fiverr.com/mantharbaloc190";
 const WHATSAPP =
   "https://wa.me/923083106882?text=" +
   encodeURIComponent(

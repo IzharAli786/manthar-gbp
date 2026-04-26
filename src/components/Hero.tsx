@@ -102,7 +102,7 @@ export default function Hero() {
                 />
               </a>
               <a
-                href="https://www.fiverr.com/"
+                href="https://www.fiverr.com/mantharbaloc190"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-ghost inline-flex items-center justify-center gap-3 px-7 py-4 text-[12px] tracking-[0.22em] uppercase"

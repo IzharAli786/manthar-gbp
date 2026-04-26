@@ -38,7 +38,7 @@ export default function Footer() {
             WhatsApp · +92 308 3106882
           </a>
           <a
-            href="https://www.fiverr.com/"
+            href="https://www.fiverr.com/mantharbaloc190"
             target="_blank"
             rel="noopener noreferrer"
             className="block hover:text-brass transition-colors"
