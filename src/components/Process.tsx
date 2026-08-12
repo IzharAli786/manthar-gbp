@@ -1,3 +1,4 @@
+import ProcessRail from "./ProcessRail";
 import Reveal from "./Reveal";
 
 const steps = [
@@ -33,7 +34,7 @@ export default function Process() {
         <Reveal>
           <p className="eyebrow flex items-center gap-3">
             <span className="inline-block h-px w-8 bg-line-strong" />
-            Process — 04
+            Process — 05
           </p>
         </Reveal>
         <Reveal delay={0.1}>
@@ -45,24 +46,26 @@ export default function Process() {
         </Reveal>
       </div>
 
-      <ol className="relative">
-        {steps.map((s, i) => (
-          <Reveal key={s.n} delay={i * 0.06}>
-            <li className="group hairline-t py-7 md:py-12 grid grid-cols-12 gap-4 md:gap-10 items-baseline transition-colors hover:bg-paper-soft">
-              <span className="display text-3xl md:text-5xl text-ink/35 group-hover:text-brass transition-colors col-span-2 md:col-span-1">
-                {s.n}
-              </span>
-              <h3 className="display italic text-3xl md:text-5xl col-span-10 md:col-span-4">
-                {s.title}
-              </h3>
-              <p className="text-[14px] md:text-[15px] leading-relaxed text-ink-mute col-span-12 md:col-span-7">
-                {s.body}
-              </p>
-            </li>
-          </Reveal>
-        ))}
-        <div className="hairline-t" />
-      </ol>
+      <ProcessRail>
+        <ol className="relative md:pl-8">
+          {steps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.06}>
+              <li className="group hairline-t py-7 md:py-12 grid grid-cols-12 gap-4 md:gap-10 items-baseline transition-colors hover:bg-paper-soft">
+                <span className="display text-3xl md:text-5xl text-ink/35 group-hover:text-brass transition-colors col-span-2 md:col-span-1">
+                  {s.n}
+                </span>
+                <h3 className="display italic text-3xl md:text-5xl col-span-10 md:col-span-4">
+                  {s.title}
+                </h3>
+                <p className="text-[14px] md:text-[15px] leading-relaxed text-ink-mute col-span-12 md:col-span-7">
+                  {s.body}
+                </p>
+              </li>
+            </Reveal>
+          ))}
+          <div className="hairline-t" />
+        </ol>
+      </ProcessRail>
     </section>
   );
 }

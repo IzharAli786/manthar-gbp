@@ -2,16 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { GoogleMapsPin } from "./brand/GoogleLogo";
+import Magnetic from "./Magnetic";
 
 const links = [
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#process", label: "Process" },
   { href: "#work", label: "Proof" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Nav() {
+/**
+ * `onHome`: on the one-pager, links are in-page anchors (Lenis-smooth).
+ * On service pages, section links point back home ("/#about") while
+ * Contact stays on-page (each service page has its own #contact form).
+ */
+export default function Nav({ onHome = true }: { onHome?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,6 +27,9 @@ export default function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const resolve = (href: string) =>
+    onHome || href === "#contact" ? href : `/${href}`;
 
   return (
     <header
@@ -30,7 +40,10 @@ export default function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 md:px-10 md:py-5">
-        <a href="#top" className="group flex items-center gap-2.5">
+        <a
+          href={onHome ? "#top" : "/"}
+          className="group flex items-center gap-2.5"
+        >
           <span className="grid h-9 w-9 place-items-center rounded-full bg-ink text-paper transition-transform group-hover:rotate-12 duration-500">
             <GoogleMapsPin size={16} />
           </span>
@@ -48,7 +61,7 @@ export default function Nav() {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={resolve(l.href)}
               className="group relative text-[13px] tracking-wide text-ink/70 hover:text-ink transition-colors"
             >
               {l.label}
@@ -57,12 +70,14 @@ export default function Nav() {
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="btn-ink px-4 py-2.5 text-[11px] md:text-[12px] tracking-[0.18em] uppercase"
-        >
-          Hire&nbsp;me
-        </a>
+        <Magnetic strength={0.25}>
+          <a
+            href="#contact"
+            className="btn-ink inline-block px-4 py-2.5 text-[11px] md:text-[12px] tracking-[0.18em] uppercase"
+          >
+            Hire&nbsp;me
+          </a>
+        </Magnetic>
       </div>
     </header>
   );

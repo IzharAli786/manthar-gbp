@@ -1,7 +1,14 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import NumberTween from "./NumberTween";
 
 type Stat = {
   value: number;
@@ -78,45 +85,132 @@ function Counter({
   );
 }
 
-export default function Stats() {
+/** Desktop: dark pinned scene — one giant stat per scroll segment. */
+function PinnedStats() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [stage, setStage] = useState(0);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setStage(Math.min(stats.length - 1, Math.floor(v * stats.length)));
+  });
+
+  const s = stats[stage];
+  const isFloat = !Number.isInteger(s.value);
+
   return (
-    <section className="relative py-20 md:py-28 mx-auto max-w-[1400px] px-5 md:px-10 hairline-t hairline-b">
-      <div className="grid grid-cols-2 md:grid-cols-4">
-        {stats.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{
-              duration: 0.9,
-              delay: i * 0.08,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className={`p-6 md:p-10 ${
-              i < stats.length - 1 ? "md:border-r md:border-line" : ""
-            } ${
-              i % 2 === 0 ? "border-r border-line md:border-r" : ""
-            } ${i < 2 ? "border-b border-line md:border-b-0" : ""}`}
-          >
-            <p
-              className={`display text-5xl md:text-7xl leading-none ${
-                s.accent ?? "text-shimmer"
-              }`}
+    <div ref={ref} className="relative h-[380vh]">
+      <div className="sticky top-0 h-screen overflow-hidden bg-ink text-paper flex flex-col items-center justify-center">
+        {/* Faint grid backdrop */}
+        <div className="absolute inset-0 opacity-[0.06] grid-dots invert" />
+
+        <p className="eyebrow !text-paper/50 flex items-center gap-3">
+          <span className="inline-block h-px w-8 bg-paper/30" />
+          By the numbers
+          <span className="inline-block h-px w-8 bg-paper/30" />
+        </p>
+
+        <div className="relative mt-4 flex items-center justify-center min-h-[24vw]">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={stage}
+              initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -60, filter: "blur(10px)" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="display leading-none text-[20vw] select-none"
             >
-              <Counter to={s.value} suffix={s.suffix} prefix={s.prefix} />
-            </p>
-            <p className="mt-4 md:mt-6 text-sm tracking-wide text-ink">
-              {s.label}
-            </p>
+              {s.prefix}
+              <NumberTween
+                value={s.value}
+                decimals={isFloat ? 1 : 0}
+                duration={600}
+              />
+              <span className={s.accent ?? "text-brass-shine"}>
+                {s.suffix ?? ""}
+              </span>
+            </motion.p>
+          </AnimatePresence>
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`label-${stage}`}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center"
+          >
+            <p className="text-lg tracking-wide">{s.label}</p>
             {s.caption && (
-              <p className="mt-1.5 text-[12px] text-ink-mute leading-snug">
-                {s.caption}
-              </p>
+              <p className="mt-1.5 text-[13px] text-paper/50">{s.caption}</p>
             )}
           </motion.div>
-        ))}
+        </AnimatePresence>
+
+        {/* Stage dots */}
+        <div className="absolute bottom-10 flex items-center gap-2.5">
+          {stats.map((st, i) => (
+            <span
+              key={st.label}
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i === stage ? "w-8 bg-brass" : "w-1.5 bg-paper/25"
+              }`}
+            />
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
+  );
+}
+
+export default function Stats() {
+  return (
+    <>
+      {/* Desktop: cinematic pinned takeover */}
+      <section className="hidden md:block">
+        <PinnedStats />
+      </section>
+
+      {/* Mobile: fast, light grid */}
+      <section className="md:hidden relative py-20 mx-auto max-w-[1400px] px-5 hairline-t hairline-b">
+        <div className="grid grid-cols-2">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.9,
+                delay: i * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className={`p-6 ${i % 2 === 0 ? "border-r border-line" : ""} ${
+                i < 2 ? "border-b border-line" : ""
+              }`}
+            >
+              <p
+                className={`display text-5xl leading-none ${
+                  s.accent ?? "text-shimmer"
+                }`}
+              >
+                <Counter to={s.value} suffix={s.suffix} prefix={s.prefix} />
+              </p>
+              <p className="mt-4 text-sm tracking-wide text-ink">{s.label}</p>
+              {s.caption && (
+                <p className="mt-1.5 text-[12px] text-ink-mute leading-snug">
+                  {s.caption}
+                </p>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Loader2, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import Magnetic from "./Magnetic";
 
 const ENDPOINT = "https://formsubmit.co/ajax/balochmanthar15@gmail.com";
 
@@ -18,7 +19,11 @@ const services = [
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function ContactForm() {
+export default function ContactForm({
+  defaultService,
+}: {
+  defaultService?: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -124,7 +129,13 @@ export default function ContactForm() {
         autoComplete="email"
       />
 
-      <SelectField label="Service" name="service" options={services} required />
+      <SelectField
+        label="Service"
+        name="service"
+        options={services}
+        required
+        defaultValue={defaultService}
+      />
 
       <TextareaField
         label="Tell me about your project"
@@ -137,23 +148,25 @@ export default function ContactForm() {
         <p className="text-[12px] text-ink-mute leading-snug max-w-xs">
           By sending, you agree I may reply by email or WhatsApp. No spam, ever.
         </p>
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="btn-ink inline-flex items-center justify-center gap-3 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium disabled:opacity-70"
-        >
-          {status === "loading" ? (
-            <>
-              <Loader2 size={16} className="animate-spin" />
-              Sending
-            </>
-          ) : (
-            <>
-              Send message
-              <Send size={15} />
-            </>
-          )}
-        </button>
+        <Magnetic strength={0.25}>
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="btn-ink inline-flex items-center justify-center gap-3 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium disabled:opacity-70"
+          >
+            {status === "loading" ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                Sending
+              </>
+            ) : (
+              <>
+                Send message
+                <Send size={15} />
+              </>
+            )}
+          </button>
+        </Magnetic>
       </div>
 
       {status === "error" && (
@@ -208,11 +221,13 @@ function SelectField({
   name,
   options,
   required,
+  defaultValue,
 }: {
   label: string;
   name: string;
   options: string[];
   required?: boolean;
+  defaultValue?: string;
 }) {
   return (
     <label className="block">
@@ -223,7 +238,7 @@ function SelectField({
         <select
           name={name}
           required={required}
-          defaultValue=""
+          defaultValue={defaultValue ?? ""}
           className={`${inputBase} appearance-none pr-8 cursor-pointer`}
         >
           <option value="" disabled>

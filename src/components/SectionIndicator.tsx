@@ -6,10 +6,12 @@ import { AnimatePresence, motion } from "framer-motion";
 const sections: { id: string; label: string; n: string }[] = [
   { id: "top", label: "Manthar Ali", n: "01" },
   { id: "about", label: "About", n: "02" },
-  { id: "services", label: "Services", n: "03" },
-  { id: "process", label: "Process", n: "04" },
-  { id: "work", label: "Proof", n: "05" },
-  { id: "contact", label: "Contact", n: "06" },
+  { id: "case-study", label: "Case Study", n: "03" },
+  { id: "services", label: "Services", n: "04" },
+  { id: "process", label: "Process", n: "05" },
+  { id: "work", label: "Proof", n: "06" },
+  { id: "faq", label: "FAQ", n: "07" },
+  { id: "contact", label: "Contact", n: "08" },
 ];
 
 export default function SectionIndicator() {

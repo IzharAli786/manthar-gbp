@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
 import { ArrowUpRight, MapPin, Search, Megaphone, Target } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -20,7 +21,7 @@ const services: Service[] = [
     sub: "Map-pack engineering",
     body: "Full-stack GBP optimization — geo-grid audits, category architecture, photo & post cadence, Q&A seeding, service-area expansion, and ranking diagnostics. Built to outrank, not to tick boxes.",
     chips: ["Geo-grid audit", "Citations", "Posts & Media", "Schema"],
-    href: "https://www.fiverr.com/s/zWDoVRR",
+    href: "/gbp-optimization",
   },
   {
     n: "02",
@@ -29,7 +30,7 @@ const services: Service[] = [
     sub: "Rank where buyers search",
     body: "Technical SEO audits, on-page optimization, keyword architecture, internal-link engineering, and content briefs that match real search intent. The kind of SEO that compounds — and lasts.",
     chips: ["Technical audit", "On-page", "Keywords", "Content"],
-    href: "https://www.fiverr.com/s/5rzd3p6",
+    href: "/local-seo",
   },
   {
     n: "03",
@@ -60,7 +61,7 @@ export default function Services() {
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
               <span className="inline-block h-px w-8 bg-line-strong" />
-              Services — 03
+              Services — 04
             </p>
           </Reveal>
           <Reveal delay={0.1}>
@@ -82,18 +83,23 @@ export default function Services() {
       <div className="grid grid-cols-1 md:grid-cols-2 hairline-t hairline">
         {services.map((s, i) => {
           const Icon = s.icon;
-          const Tag = s.href ? "a" : "article";
-          const linkProps = s.href
-            ? {
-                href: s.href,
-                target: "_blank",
-                rel: "noopener noreferrer",
-              }
-            : {};
+          const Wrapper = ({
+            className,
+            children,
+          }: {
+            className: string;
+            children: React.ReactNode;
+          }) =>
+            s.href ? (
+              <Link href={s.href} className={className}>
+                {children}
+              </Link>
+            ) : (
+              <article className={className}>{children}</article>
+            );
           return (
             <Reveal key={s.n} delay={i * 0.08}>
-              <Tag
-                {...linkProps}
+              <Wrapper
                 className={`group relative block h-full p-8 md:p-12 transition-colors duration-500 hover:bg-ink hover:text-paper border-b border-line md:border-b-0 last:border-b-0 ${
                   i % 2 === 0 ? "md:border-r md:border-line" : ""
                 } ${i < 2 ? "md:border-b md:border-line" : ""}`}
@@ -142,15 +148,38 @@ export default function Services() {
 
                 {s.href && (
                   <p className="mt-6 text-[11px] tracking-[0.22em] uppercase text-brass group-hover:text-paper/80 transition-colors flex items-center gap-2">
-                    View gig on Fiverr
-                    <span aria-hidden="true">↗</span>
+                    Explore the service
+                    <span aria-hidden="true">→</span>
                   </p>
                 )}
-              </Tag>
+              </Wrapper>
             </Reveal>
           );
         })}
       </div>
+
+      {/* Reinstatement callout */}
+      <Reveal delay={0.1}>
+        <Link
+          href="/gbp-reinstatement"
+          className="group mt-6 flex flex-wrap items-center justify-between gap-4 hairline-strong rounded-md px-6 py-5 md:px-8 md:py-6 transition-colors duration-500 hover:bg-ink hover:text-paper hover:border-ink"
+        >
+          <p className="flex items-center gap-3 text-[14px] md:text-[15px]">
+            <span className="inline-block h-2 w-2 rounded-full bg-g-red shrink-0" />
+            <span>
+              <span className="font-medium">Profile suspended?</span>{" "}
+              <span className="text-ink-mute group-hover:text-paper/70 transition-colors">
+                I recover Google Business Profiles other providers gave up on
+                — reviews intact.
+              </span>
+            </span>
+          </p>
+          <span className="text-[11px] tracking-[0.22em] uppercase text-brass group-hover:text-paper/80 transition-colors flex items-center gap-2">
+            GBP Reinstatement
+            <ArrowUpRight size={14} />
+          </span>
+        </Link>
+      </Reveal>
     </section>
   );
 }

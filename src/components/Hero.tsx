@@ -12,9 +12,13 @@ import { useRef, type MouseEvent } from "react";
 import { ArrowUpRight, Star } from "lucide-react";
 import { GoogleG } from "./brand/GoogleLogo";
 import MapPackCard from "./MapPackCard";
+import { useIntroOffset } from "./Preloader";
+import Magnetic from "./Magnetic";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
+  // Push entrance animations back while the intro overlay plays
+  const io = useIntroOffset();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -66,7 +70,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.05 }}
+          transition={{ duration: 0.8, delay: io + 0.05 }}
           className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8 md:mb-10 text-[12px] md:text-[13px]"
         >
           <span className="inline-flex items-center gap-2 hairline-strong px-3 py-1.5 rounded-full bg-paper-soft">
@@ -87,7 +91,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: io + 0.1 }}
               className="eyebrow flex items-center gap-3"
             >
               <span className="inline-block h-px w-8 bg-line-strong" />
@@ -95,11 +99,11 @@ export default function Hero() {
             </motion.p>
 
             <h1 className="display mt-5 text-[16vw] sm:text-[12vw] md:text-[9vw] lg:text-[8.2vw] xl:text-[136px] leading-[0.92]">
-              <SplitChars text="Manthar" />
+              <SplitChars text="Manthar" delay={io} />
               <br />
               <span className="italic">
                 <span className="text-brass-shine">
-                  <SplitChars text="Ali." delay={0.45} />
+                  <SplitChars text="Ali." delay={io + 0.45} />
                 </span>
               </span>
             </h1>
@@ -107,7 +111,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.55 }}
+              transition={{ duration: 1, delay: io + 0.55 }}
               className="mt-6 md:mt-8 max-w-xl text-[15px] md:text-[17px] leading-relaxed text-ink-soft"
             >
               I rank Google Business Profiles to the top of the map pack,
@@ -118,34 +122,38 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.8 }}
+              transition={{ duration: 0.9, delay: io + 0.8 }}
               className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4"
             >
-              <a
-                href="#contact"
-                className="btn-ink group inline-flex items-center justify-center gap-3 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium"
-              >
-                Start a Project
-                <ArrowUpRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </a>
-              <a
-                href="https://www.fiverr.com/mantharbaloc190"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ghost inline-flex items-center justify-center gap-3 px-7 py-4 text-[12px] tracking-[0.22em] uppercase"
-              >
-                View on Fiverr
-                <ArrowUpRight size={16} />
-              </a>
+              <Magnetic className="w-full sm:w-auto">
+                <a
+                  href="#contact"
+                  className="btn-ink group inline-flex w-full sm:w-auto items-center justify-center gap-3 px-7 py-4 text-[12px] tracking-[0.22em] uppercase font-medium"
+                >
+                  Start a Project
+                  <ArrowUpRight
+                    size={16}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
+              </Magnetic>
+              <Magnetic className="w-full sm:w-auto">
+                <a
+                  href="https://www.fiverr.com/mantharbaloc190"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost inline-flex w-full sm:w-auto items-center justify-center gap-3 px-7 py-4 text-[12px] tracking-[0.22em] uppercase"
+                >
+                  View on Fiverr
+                  <ArrowUpRight size={16} />
+                </a>
+              </Magnetic>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.05 }}
+              transition={{ duration: 1, delay: io + 1.05 }}
               className="mt-8 md:mt-10 flex items-center gap-4 text-[12px] text-ink-mute"
             >
               <div className="flex items-center gap-0.5">
@@ -186,13 +194,13 @@ export default function Hero() {
               <motion.div
                 initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
                 animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                transition={{ duration: 1.6, ease: [0.83, 0, 0.17, 1], delay: 0.1 }}
+                transition={{ duration: 1.6, ease: [0.83, 0, 0.17, 1], delay: io + 0.1 }}
                 className="relative h-full w-full overflow-hidden bg-paper-deep"
               >
                 <motion.div
                   initial={{ scale: 1.18 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1], delay: io }}
                   className="relative h-full w-full"
                 >
                   <Image
@@ -213,7 +221,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 1.0 }}
+                transition={{ duration: 0.9, delay: io + 1.0 }}
                 className="absolute top-3 left-3 md:-top-5 md:-left-8 card px-3.5 py-2.5 animate-floaty"
               >
                 <p className="eyebrow !text-[9px]">Top Rated · Fiverr</p>
@@ -224,7 +232,7 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 1.15 }}
+                transition={{ duration: 0.9, delay: io + 1.15 }}
                 className="absolute bottom-3 right-3 md:-bottom-5 md:-right-6 card px-3.5 py-2.5 max-w-[180px]"
               >
                 <div className="flex items-center gap-1 mb-0.5">
@@ -280,14 +288,14 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.3 }}
+          transition={{ duration: 1, delay: io + 1.3 }}
           className="mt-14 md:mt-20 flex flex-wrap items-center justify-between gap-3 text-[11px] tracking-[0.28em] uppercase text-ink-mute"
         >
           <span>Scroll</span>
           <span className="hidden md:inline">
             Est. 2018 · Karachi → Worldwide
           </span>
-          <span>01 / 06</span>
+          <span>01 / 08</span>
         </motion.div>
       </div>
     </section>

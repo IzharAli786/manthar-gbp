@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { GoogleMapsPin } from "./brand/GoogleLogo";
+import { SERVICES } from "@/lib/services";
 
 const EMAIL = "balochmanthar15@gmail.com";
 const WHATSAPP = "https://wa.me/923083106882";
@@ -8,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="hairline-t mt-10 bg-paper-soft">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10 py-10 md:py-14 grid grid-cols-12 gap-6 items-end">
-        <div className="col-span-12 md:col-span-6">
+        <div className="col-span-12 md:col-span-4">
           <div className="flex items-center gap-3">
             <span className="grid h-10 w-10 place-items-center rounded-full bg-ink">
               <GoogleMapsPin size={18} />
@@ -20,6 +22,18 @@ export default function Footer() {
           <p className="mt-3 text-[12px] tracking-[0.22em] uppercase text-ink-mute">
             GBP · Local SEO · Digital Media
           </p>
+        </div>
+        <div className="col-span-6 md:col-span-2 text-[13px] text-ink-soft space-y-1">
+          <p className="eyebrow !text-[10px] mb-2">Services</p>
+          {SERVICES.map((s) => (
+            <Link
+              key={s.slug}
+              href={`/${s.slug}`}
+              className="block hover:text-brass transition-colors"
+            >
+              {s.nav}
+            </Link>
+          ))}
         </div>
         <div className="col-span-6 md:col-span-3 text-[13px] text-ink-soft space-y-1">
           <p className="eyebrow !text-[10px] mb-2">Reach</p>

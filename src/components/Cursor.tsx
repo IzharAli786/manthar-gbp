@@ -13,7 +13,7 @@ export default function Cursor() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(pointer: coarse)").matches) return; // touch
-    setEnabled(true);
+    const enableT = setTimeout(() => setEnabled(true), 0);
 
     const onMove = (e: MouseEvent) => {
       target.current.x = e.clientX;
@@ -78,6 +78,7 @@ export default function Cursor() {
     document.documentElement.classList.add("has-custom-cursor");
 
     return () => {
+      clearTimeout(enableT);
       cancelAnimationFrame(raf);
       document.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseover", onOver);

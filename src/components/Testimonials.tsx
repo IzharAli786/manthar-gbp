@@ -67,7 +67,7 @@ export default function Testimonials() {
           <Reveal>
             <p className="eyebrow flex items-center gap-3">
               <span className="inline-block h-px w-8 bg-line-strong" />
-              Proof — 05
+              Proof — 06
             </p>
           </Reveal>
           <Reveal delay={0.1}>

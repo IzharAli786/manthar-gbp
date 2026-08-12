@@ -21,7 +21,7 @@ export default function Contact() {
       <Reveal>
         <p className="eyebrow flex items-center gap-3">
           <span className="inline-block h-px w-8 bg-line-strong" />
-          Contact — 06
+          Contact — 08
         </p>
       </Reveal>
 
