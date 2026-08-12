@@ -25,6 +25,16 @@ Site: https://www.manthargbpfix.com
   markup, citations and local links, GBP integration, and geo-grid + call
   tracking.
 
+## Articles
+
+- [Google Business Profile Suspended? Exactly What to Do (2026)](https://www.manthargbpfix.com/blog/google-business-profile-suspended-what-to-do):
+  Soft vs. hard suspensions, the real suspension triggers, a step-by-step
+  recovery process, and the panic moves that make suspensions worse.
+- [GBP Appeal Denied? How to Still Get Reinstated (2026)](https://www.manthargbpfix.com/blog/gbp-appeal-denied-how-to-get-reinstated):
+  Why most self-filed appeals fail, the evidence pack Google's reviewers
+  accept, escalation after a denial, and how merged duplicates keep reviews.
+- Blog index: https://www.manthargbpfix.com/blog
+
 ## Facts
 
 - Active in local SEO and GBP work since 2018.

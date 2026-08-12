@@ -10,6 +10,7 @@ const links = [
   { href: "#process", label: "Process" },
   { href: "#work", label: "Proof" },
   { href: "#faq", label: "FAQ" },
+  { href: "/blog", label: "Blog" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -28,8 +29,10 @@ export default function Nav({ onHome = true }: { onHome?: boolean }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const resolve = (href: string) =>
-    onHome || href === "#contact" ? href : `/${href}`;
+  const resolve = (href: string) => {
+    if (!href.startsWith("#")) return href; // route links pass through
+    return onHome || href === "#contact" ? href : `/${href}`;
+  };
 
   return (
     <header
