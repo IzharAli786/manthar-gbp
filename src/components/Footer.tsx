@@ -40,6 +40,12 @@ export default function Footer() {
           >
             Blog
           </Link>
+          <Link
+            href="/consultation"
+            className="block hover:text-brass transition-colors"
+          >
+            $50 Consultation
+          </Link>
         </div>
         <div className="col-span-6 md:col-span-3 text-[13px] text-ink-soft space-y-1">
           <p className="eyebrow !text-[10px] mb-2">Reach</p>
