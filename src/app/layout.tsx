@@ -45,7 +45,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Manthar Ali", url: SITE_URL }],
   creator: "Manthar Ali",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": "/feed.xml" },
+  },
   openGraph: {
     type: "website",
     url: SITE_URL,

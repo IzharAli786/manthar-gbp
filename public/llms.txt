@@ -33,7 +33,16 @@ Site: https://www.manthargbpfix.com
 - [GBP Appeal Denied? How to Still Get Reinstated (2026)](https://www.manthargbpfix.com/blog/gbp-appeal-denied-how-to-get-reinstated):
   Why most self-filed appeals fail, the evidence pack Google's reviewers
   accept, escalation after a denial, and how merged duplicates keep reviews.
+- [How to Rank in the Google Maps 3-Pack (2026 Guide)](https://www.manthargbpfix.com/blog/how-to-rank-google-maps-3-pack):
+  How relevance, distance, and prominence actually decide the local pack,
+  category architecture, review velocity, citations, landing pages, and
+  geo-grid measurement.
+- [A Google Review Strategy That Won't Get You Penalized (2026)](https://www.manthargbpfix.com/blog/google-review-strategy-guidelines):
+  What review practices are banned (buying, gating, incentives), how to
+  build compliant review velocity, and handling negative or vanished
+  reviews.
 - Blog index: https://www.manthargbpfix.com/blog
+- RSS feed: https://www.manthargbpfix.com/feed.xml
 
 ## Facts
 
