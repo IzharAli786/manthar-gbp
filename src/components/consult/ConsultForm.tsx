@@ -191,7 +191,7 @@ export default function ConsultForm() {
           type="tel"
           required
           autoComplete="tel"
-          pattern="[+()0-9\-\s]{7,20}"
+          pattern="[+\(\)0-9\-\s]{7,20}"
           placeholder="+1 555 000 0000"
         />
       </div>
