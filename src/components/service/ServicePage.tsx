@@ -128,7 +128,7 @@ export default function ServicePage({ s }: { s: ServiceDef }) {
                   ))}
                 </div>
                 <span className="tracking-wider">
-                  5.0 · 600+ five-star reviews · Top Rated on Fiverr
+                  4.9 · 285+ reviews · Top Rated on Fiverr
                 </span>
               </div>
             </Reveal>

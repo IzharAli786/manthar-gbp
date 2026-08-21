@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s — Manthar Ali",
   },
   description:
-    "Google Business Profile optimization, GBP suspension reinstatement, and local SEO that puts businesses at the top of the Google Maps pack. 600+ five-star reviews, Top Rated on Fiverr since 2018.",
+    "Google Business Profile optimization, GBP suspension reinstatement, and local SEO that puts businesses at the top of the Google Maps pack. 285+ reviews with a 4.9 rating, Top Rated on Fiverr since 2018.",
   keywords: [
     "Google Business Profile expert",
     "GBP optimization service",
@@ -55,14 +55,14 @@ export const metadata: Metadata = {
     siteName: "Manthar Ali — GBP Studio",
     title: "Manthar Ali — Google Business Profile Expert & Local SEO",
     description:
-      "Rank at the top of the Google Maps pack. GBP optimization, suspension reinstatement, and local SEO — 600+ five-star reviews, Top Rated on Fiverr.",
+      "Rank at the top of the Google Maps pack. GBP optimization, suspension reinstatement, and local SEO — 285+ reviews, 4.9-rated, Top Rated on Fiverr.",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Manthar Ali — Google Business Profile Expert & Local SEO",
     description:
-      "Rank at the top of the Google Maps pack. GBP optimization, reinstatement, and local SEO — 600+ five-star reviews on Fiverr.",
+      "Rank at the top of the Google Maps pack. GBP optimization, reinstatement, and local SEO — 285+ reviews, 4.9-rated on Fiverr.",
   },
   robots: {
     index: true,

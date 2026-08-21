@@ -256,7 +256,7 @@ export default async function PostPage({ params }: { params: Params }) {
                 <div>
                   <p className="text-[13px] font-medium">Manthar Ali</p>
                   <p className="text-[11px] text-ink-mute">
-                    GBP specialist · 600+ five-star engagements
+                    GBP specialist · 285+ Fiverr reviews · 4.9
                   </p>
                 </div>
               </div>

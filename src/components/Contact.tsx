@@ -109,7 +109,7 @@ export default function Contact() {
                     fvr
                   </span>
                   <span className="text-[13px] flex-1">
-                    Browse on Fiverr · 600+ reviews
+                    Browse on Fiverr · 285+ reviews
                   </span>
                   <ArrowUpRight
                     size={14}

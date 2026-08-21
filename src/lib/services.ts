@@ -33,7 +33,7 @@ export const SERVICES: ServiceDef[] = [
     nav: "GBP Optimization",
     metaTitle: "Google Business Profile Optimization Service",
     metaDescription:
-      "Full-stack Google Business Profile optimization — geo-grid audits, category architecture, citations, review velocity, and content cadence — engineered to rank in the Google Maps 3-pack. Top Rated on Fiverr with 600+ five-star reviews.",
+      "Full-stack Google Business Profile optimization — geo-grid audits, category architecture, citations, review velocity, and content cadence — engineered to rank in the Google Maps 3-pack. Top Rated on Fiverr with 285+ reviews and a 4.9 rating.",
     keywords: [
       "Google Business Profile optimization",
       "GBP optimization service",
@@ -124,7 +124,7 @@ export const SERVICES: ServiceDef[] = [
     nav: "GBP Reinstatement",
     metaTitle: "Google Business Profile Reinstatement — Fix a Suspended GBP",
     metaDescription:
-      "Google Business Profile suspended? I diagnose the suspension, build the evidence pack, and file appeals that get profiles reinstated — with reviews intact. Recovered profiles other providers had given up on. 600+ five-star reviews on Fiverr.",
+      "Google Business Profile suspended? I diagnose the suspension, build the evidence pack, and file appeals that get profiles reinstated — with reviews intact. Recovered profiles other providers had given up on. 285+ reviews and a 4.9 rating on Fiverr.",
     keywords: [
       "Google Business Profile suspended",
       "GBP reinstatement service",
@@ -227,7 +227,7 @@ export const SERVICES: ServiceDef[] = [
     nav: "Local SEO",
     metaTitle: "Local SEO Service — Rank Where Your Customers Search",
     metaDescription:
-      "Local SEO engineered around the Google Maps pack: technical audits, location pages, citations, review strategy, and geo-grid tracking. The website and the profile optimized as one system. Top Rated on Fiverr, 600+ five-star reviews.",
+      "Local SEO engineered around the Google Maps pack: technical audits, location pages, citations, review strategy, and geo-grid tracking. The website and the profile optimized as one system. Top Rated on Fiverr, 285+ reviews, 4.9 rating.",
     keywords: [
       "local SEO service",
       "local SEO specialist",

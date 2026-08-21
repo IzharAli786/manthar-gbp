@@ -22,7 +22,7 @@ import { FIVERR_PROFILE, SERVICES, SITE_URL } from "@/lib/services";
 const homeFaqs: FaqItem[] = [
   {
     q: "Who is Manthar Ali?",
-    a: "Manthar Ali is a Google Business Profile expert and local SEO specialist, active since 2018 and based in Karachi, working with clients worldwide. He is Top Rated on Fiverr with 600+ five-star reviews and a 5.0 rating maintained for five consecutive years, specializing in GBP optimization, suspension reinstatement, and map-pack ranking.",
+    a: "Manthar Ali is a Google Business Profile expert and local SEO specialist, active since 2018 and based in Karachi, working with clients worldwide. He is Top Rated on Fiverr with 285+ reviews and a 4.9 rating, specializing in GBP optimization, suspension reinstatement, and map-pack ranking.",
   },
   {
     q: "How do I rank higher in the Google Maps 3-pack?",
@@ -67,7 +67,7 @@ export default function Home() {
               jobTitle:
                 "Google Business Profile Expert & Local SEO Specialist",
               description:
-                "Google Business Profile optimization, GBP suspension reinstatement, and local SEO. Top Rated on Fiverr with 600+ five-star reviews since 2018.",
+                "Google Business Profile optimization, GBP suspension reinstatement, and local SEO. Top Rated on Fiverr with 285+ reviews and a 4.9 rating since 2018.",
               sameAs: [FIVERR_PROFILE],
               address: {
                 "@type": "PostalAddress",

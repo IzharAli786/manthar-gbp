@@ -131,7 +131,7 @@ export default function Image() {
               ))}
             </div>
             <span style={{ marginLeft: 16, color: "rgba(242,238,229,0.8)" }}>
-              5.0 · 600+ reviews · Top Rated on Fiverr
+              4.9 · 285+ reviews · Top Rated on Fiverr
             </span>
           </div>
           <div style={{ display: "flex", fontSize: 26, color: BRASS }}>

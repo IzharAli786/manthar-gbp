@@ -79,7 +79,7 @@ export default function Testimonials() {
           </Reveal>
           <Reveal delay={0.18}>
             <p className="mt-5 text-[14px] text-ink-mute max-w-md">
-              Real, verified Fiverr reviews — every one a five-star.
+              Real, verified Fiverr reviews — 285+ of them, averaging 4.9.
             </p>
           </Reveal>
         </div>
@@ -96,7 +96,7 @@ export default function Testimonials() {
               ))}
             </div>
             <span className="text-[12px] tracking-wider text-ink">
-              5.0 · 600+ reviews
+              4.9 · 285+ reviews
             </span>
           </div>
         </Reveal>

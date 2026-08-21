@@ -166,7 +166,7 @@ export default function Hero() {
                 ))}
               </div>
               <span className="tracking-wider">
-                5.0 · 600+ five-star reviews on Fiverr
+                4.9 · 285+ reviews on Fiverr
               </span>
             </motion.div>
           </div>
@@ -243,12 +243,12 @@ export default function Hero() {
                       className="fill-g-yellow text-g-yellow"
                     />
                   ))}
-                  <span className="ml-1 text-[10px] font-medium">5.0</span>
+                  <span className="ml-1 text-[10px] font-medium">4.9</span>
                 </div>
                 <p className="text-[11px] text-ink-mute leading-snug">
-                  600+ five-star
+                  285+ client
                   <br />
-                  client reviews
+                  reviews on Fiverr
                 </p>
               </motion.div>
             </motion.div>

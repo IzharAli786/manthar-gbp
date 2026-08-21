@@ -27,9 +27,9 @@ const stats: Stat[] = [
     caption: "Across Fiverr & private clients",
   },
   {
-    value: 5.0,
+    value: 4.9,
     label: "Average rating",
-    caption: "Maintained for 5 consecutive years",
+    caption: "Across 285+ Fiverr reviews",
     accent: "text-g-yellow",
   },
   {
