@@ -193,7 +193,7 @@ export default function ConsultForm() {
           autoComplete="tel"
           pattern="[+\(\)0-9\-\s]{7,20}"
           placeholder="+1 555 000 0000"
-        />
+        />  
       </div>
 
       <label className="block">
